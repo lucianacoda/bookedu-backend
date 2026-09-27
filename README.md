@@ -1,4 +1,4 @@
-# School Library API (Back-End)
+# Biblioteca Escolar (Back-End)
 
 API principal para o MVP de gestão de acervo escolar, desenvolvida em Python com FastAPI e SQLite.
 
