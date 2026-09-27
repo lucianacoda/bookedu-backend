@@ -1,26 +1,31 @@
-# BookEdu - API (Backend)
+# School Library API (Back-End)
 
-Este é o módulo backend (API REST) do sistema BookEdu, um gerenciador de biblioteca escolar. Ele foi desenvolvido como requisito do MVP da pós-graduação.
+API principal para o MVP de gestão de acervo escolar, desenvolvida em Python com FastAPI e SQLite.
 
-## Objetivo
-O sistema atua como o cérebro da biblioteca, recebendo requisições da interface, processando regras de negócio e salvando os registros (livros e alunos) no banco de dados SQLite.
+## Arquitetura e APIs Externas
+Para enriquecer o cadastro de forma automatizada e garantir a estabilidade do sistema (arquitetura com fallback), este serviço consome duas APIs públicas e gratuitas baseadas no ISBN do livro:
+* **BrasilAPI (Tentativa Principal):** `GET https://brasilapi.com.br/api/isbn/v1/{isbn}`
+* **Open Library API (Fallback/Contingência):** `GET https://openlibrary.org/isbn/{isbn}.json`
 
-## Instruções de Instalação
+![Fluxograma da Arquitetura](./fluxograma.png)
 
-Para que outros desenvolvedores possam configurar o ambiente local, siga as etapas abaixo:
+## Instalação e Execução (Docker)
+Este repositório contém o `Dockerfile` na raiz com as instruções de implementação para execução via contêineres.
 
-1. **Clone o repositório:**
-   git clone https://github.com/SEU_USUARIO/bookedu-backend.git
+1. Clone este repositório:
+```bash
+git clone https://github.com/lucianacoda/bookedu-backend.git
+cd bookedu-backend
+```
 
-2. **Acesse a pasta do projeto:**
-   cd bookedu-backend
+2. Construa a imagem Docker:
+```bash
+docker build -t api-biblioteca .
+```
 
-3. **Inicie o ambiente virtual (Recomendado):**
-   python3 -m venv venv
-   source venv/bin/activate
+3. Execute o contêiner:
+```bash
+docker run -p 8000:8000 api-biblioteca
+```
 
-4. **Instale as dependências:**
-   pip install -r requirements.txt
-
-5. **Execute a aplicação (via Uvicorn):**
-   uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+A documentação interativa (Swagger) estará em: `http://localhost:8000/docs`

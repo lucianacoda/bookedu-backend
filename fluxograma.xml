@@ -1,0 +1,56 @@
+<mxfile host="app.diagrams.net" modified="2023-10-28T00:00:00.000Z" agent="Mozilla/5.0" version="21.2.1" type="device">
+  <diagram id="MVP-Architecture" name="Arquitetura">
+    <mxGraphModel dx="1000" dy="1000" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- Front-End -->
+        <mxCell id="frontend" value="Interface (Front-End)&lt;br&gt;bookedu-frontend&lt;br&gt;(HTML, CSS, JS)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="120" y="240" width="160" height="80" as="geometry" />
+        </mxCell>
+
+        <!-- Back-End -->
+        <mxCell id="backend" value="API Principal (Back-End)&lt;br&gt;bookedu-backend&lt;br&gt;(FastAPI / Python)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="400" y="240" width="160" height="80" as="geometry" />
+        </mxCell>
+
+        <!-- Database -->
+        <mxCell id="database" value="Banco de Dados&lt;br&gt;(SQLite)" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#ffe6cc;strokeColor=#d79b00;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="440" y="400" width="80" height="100" as="geometry" />
+        </mxCell>
+
+        <!-- External APIs -->
+        <mxCell id="external_api" value="External APIs&lt;br&gt;(BrasilAPI + Open Library)" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="640" y="230" width="160" height="100" as="geometry" />
+        </mxCell>
+
+        <!-- Connections -->
+        <!-- Front to Back -->
+        <mxCell id="edge_front_back" value="REST (HTTP)&lt;br&gt;GET, POST, PUT, DELETE" style="endArrow=classic;startArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="frontend" target="backend">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="390" y="320" as="sourcePoint" />
+            <mxPoint x="440" y="270" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Back to DB -->
+        <mxCell id="edge_back_db" value="Leitura / Escrita" style="endArrow=classic;startArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="backend" target="database">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="390" y="320" as="sourcePoint" />
+            <mxPoint x="440" y="270" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Back to External API -->
+        <mxCell id="edge_back_ext" value="GET (ISBN) + Fallback" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.16;entryY=0.55;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="backend" target="external_api">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="390" y="320" as="sourcePoint" />
+            <mxPoint x="440" y="270" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
